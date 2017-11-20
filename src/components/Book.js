@@ -1,15 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-class Book extends React.Component {
+class Book extends Component {
+
     handleChange = ({target}) => {
-        const { value } = target
-        const { bookInfo } = this.props
+        const { value } = target;
+        const { bookInfo } = this.props;
 
         if (value !== 'none') this.props.updateBook(bookInfo, value);
     }
+
     render(){
-        const { bookInfo } = this.props
+        const { bookInfo } = this.props;
         return (
             <li>
                 <div className="book">
@@ -29,13 +31,13 @@ class Book extends React.Component {
                     <div className="book-authors">{ bookInfo.authors.join(' ') }</div>
                 </div>
             </li>
-        )
+        );
     }
 }
 
 Book.propTypes = {
     bookInfo: PropTypes.object.isRequired,
     updateBook: PropTypes.func.isRequired
-}
+};
 
-export default Book
+export default Book;

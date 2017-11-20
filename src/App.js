@@ -1,12 +1,12 @@
-import React from 'react'
-import { Route } from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
-import Search from './Search'
-import ListOfBooks from './ListOfBooks'
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import * as BooksAPI from './utils/BooksAPI';
+import Search from './components/Search';
+import ListOfBooks from './components/ListOfBooks';
 
-import './App.css'
+import './App.css';
 
-class BooksApp extends React.Component {
+class BooksApp extends Component {
   state = {
     books: []
   }
@@ -18,22 +18,18 @@ class BooksApp extends React.Component {
   }
 
   updateBook = (book, shelf) => {
-    let { books } = this.state
-    books = books.map((b) => {
-      if (b.id === book.id) {
-        b.shelf = shelf
-      }
-
-      return b
-    })
-
-    this.setState({ books })
-
-    BooksAPI.update(book, shelf)
+  
+    // Find the book on list and update it to new shelf
+    this.setState((state) => ({
+      books: state.books.map((b) => b.id === book.id ? b.shelf = shelf : false )
+    }));
+    
+    // Update the book in database
+    BooksAPI.update(book, shelf);
   }
 
   render() {
-    const { books } = this.state
+    const { books } = this.state;
     return (
       <div className="app">
         <Route exact path="/" render={() => (
@@ -44,8 +40,8 @@ class BooksApp extends React.Component {
         )}/>
         <Route path="/search" component={Search} />
       </div>
-    )
+    );
   }
 }
 
-export default BooksApp
+export default BooksApp;

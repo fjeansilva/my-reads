@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-class Search extends React.Component {
+class Search extends Component {
   render(){
     return (
         <div className="search-books">
@@ -24,8 +24,8 @@ class Search extends React.Component {
                 <ol className="books-grid"></ol>
             </div>
         </div>
-    )
+    );
   }
 }
 
-export default Search
+export default Search;
